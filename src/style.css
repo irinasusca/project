@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Playwrite+CA:wght@100..400&family=Roboto+Slab:wght@100..900&display=swap');
+
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  font-family: 'Roboto Slab', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, body *:not(button):not(img):not(a) {
+  @apply transition-colors duration-500 ease-in-out;
+}
+body {
+ 
+  background-attachment: fixed;/*
+  background: #C9ADA7;
+  background: linear-gradient(125deg, rgba(201, 173, 167, 1) 0%, rgba(242, 233, 228, 1) 100%); */
+}
+
+@theme {
+  
+  --color-dakest: #22223B;
+  --color-dark: #4A4E69;
+  --color-middle: #9A8C98;
+  --color-light: #C9ADA7;
+  --color-whitey: #F2E9E4;
+  --color-darkpurply: #313154;
+  --color-purpl-accent: #B030B5;
+  --color-dark-accent: #D462D9;
+  --font-heading: 'Roboto Slab', serif;
+  --font-body: 'Noto Sans', sans-serif;
+  --font-fancy: 'Playwrite CA', cursive;
+}
+
+@layer components {
+  .hover-underline {
+    @apply relative inline-block;
+  }
+
+  .hover-underline::after,
+  .hover-underline::before {
+    content: '';
+    @apply absolute w-full h-[2px];
+    background: linear-gradient(to right, #B030B5, #D462D9);
+    transform: scaleX(0);
+    transition: transform 0.4s ease-out;
+  }
+
+  .hover-underline::after {
+    bottom: -5px;
+    left: 0;
+    transform-origin: right;
+  }
+
+  .hover-underline::before {
+    top: -5px;
+    left: 0;
+    transform-origin: left;
+  }
+
+  .hover-underline:hover::after,
+  .hover-underline:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+.shine-on-hover {
+  background-size: 300% 100%; /* make gradient wider so it can slide */
+  transition: background-position 0.6s ease; /* smooth slide on hover */
+}
+
+.shine-on-hover:hover {
+  background-position: 100% 0; /* slide gradient fully on hover */
+}
